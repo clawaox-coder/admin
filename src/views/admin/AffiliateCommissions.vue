@@ -18,6 +18,7 @@ import TableSkeleton from '@/components/TableSkeleton.vue'
 import ListPagination from '@/components/ListPagination.vue'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { formatDate } from '@/utils/format'
+import ComplianceGuardWrapper from '@/components/ComplianceGuardWrapper.vue'
 
 const { t } = useI18n()
 const loading = ref(true)
@@ -105,6 +106,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <ComplianceGuardWrapper>
   <div class="space-y-6">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <h1 class="text-2xl font-semibold">{{ t('admin.affiliatesCommissions.title') }}</h1>
@@ -217,4 +219,5 @@ onMounted(() => {
       />
     </div>
   </div>
+  </ComplianceGuardWrapper>
 </template>

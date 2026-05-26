@@ -16,6 +16,7 @@ import TableSkeleton from '@/components/TableSkeleton.vue'
 import ListPagination from '@/components/ListPagination.vue'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { paymentStatusClass, paymentStatusLabel } from '@/utils/status'
+import ComplianceGuardWrapper from '@/components/ComplianceGuardWrapper.vue'
 import { copyText } from '@/utils/clipboard'
 import { formatDate, toRFC3339 } from '@/utils/format'
 
@@ -276,6 +277,7 @@ watch(
 </script>
 
 <template>
+  <ComplianceGuardWrapper>
   <div class="space-y-6">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <h1 class="text-2xl font-semibold">{{ t('admin.payments.title') }}</h1>
@@ -610,6 +612,7 @@ watch(
       </DialogScrollContent>
     </Dialog>
   </div>
+  </ComplianceGuardWrapper>
 </template>
 
 <style scoped>
