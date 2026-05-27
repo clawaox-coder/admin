@@ -1,6 +1,6 @@
-# SookAPI Admin
+# SookAuto Admin
 
-SookAPI Admin is the management console for operating products, orders, users, payment channels, and system settings.
+SookAuto Admin is the management console for operating products, orders, users, payment channels, and system settings.
 
 ## Tech Stack
 
@@ -32,4 +32,4 @@ npm run build
 
 ## Online Documentation
 
-- https://sookapi.com
+- https://sookauto.com

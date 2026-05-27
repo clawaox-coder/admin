@@ -34,7 +34,7 @@ const form = reactive({
   base_url: '',
   api_key: '',
   api_secret: '',
-  protocol: 'dujiao-next',
+  protocol: 'sookauto',
   callback_url: '',
   retry_max: 3,
   retry_intervals: '30,60,120',
@@ -93,7 +93,7 @@ const resetForm = () => {
     base_url: '',
     api_key: '',
     api_secret: '',
-    protocol: 'dujiao-next',
+    protocol: 'sookauto',
     callback_url: '',
     retry_max: 3,
     retry_intervals: '30,60,120',
@@ -120,7 +120,7 @@ const openEditModal = (conn: AdminSiteConnection) => {
     base_url: conn.base_url || '',
     api_key: conn.api_key || '',
     api_secret: conn.api_secret || '',
-    protocol: conn.protocol || 'dujiao-next',
+    protocol: conn.protocol || 'sookauto',
     callback_url: conn.callback_url || '',
     retry_max: conn.retry_max ?? 3,
     retry_intervals: (() => {
@@ -400,7 +400,7 @@ onMounted(() => {
                   <SelectValue :placeholder="t('siteConnections.form.protocolPlaceholder')" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="dujiao-next">dujiao-next</SelectItem>
+                  <SelectItem value="sookauto">sookauto</SelectItem>
                 </SelectContent>
               </Select>
             </div>
