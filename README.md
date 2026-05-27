@@ -1,6 +1,6 @@
-# Dujiao-Next Admin
+# SookAPI Admin
 
-Dujiao-Next Admin is the management console for operating products, orders, users, payment channels, and system settings.
+SookAPI Admin is the management console for operating products, orders, users, payment channels, and system settings.
 
 ## Tech Stack
 
@@ -32,4 +32,4 @@ npm run build
 
 ## Online Documentation
 
-- https://dujiao-next.com
+- https://sookapi.com
