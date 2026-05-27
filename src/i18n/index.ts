@@ -2376,6 +2376,7 @@ const messages = {
           navigation: '导航配置 (Navigation)',
           callbackRoutes: '回调路由 (Callback Routes)',
           orderRiskControl: '订单风控 (Risk Control)',
+          upstreamSync: '上游同步 (Upstream Sync)',
         },
         homeAnnouncement: {
           title: '首页公告',
@@ -2426,6 +2427,23 @@ const messages = {
             title: '邮箱黑名单',
             subtitle: '被封禁的邮箱将无法以游客身份下单。每行填写一个邮箱地址。',
             placeholder: '每行一个邮箱地址，例如：\nspam@example.com',
+          },
+        },
+        upstreamSync: {
+          title: '上游同步配置',
+          subtitle: '控制上游库存同步频率与下单前实时校验策略，缓解大库存站点对上游的压力。',
+          interval: {
+            title: '库存同步间隔',
+            subtitle: '系统每隔此时间向上游拉取一次库存（增量同步），24 小时内至少触发一次全量同步用于发现下架/删除。',
+            minutesLabel: '同步间隔（分钟）',
+            minutesHint: '最小 5 分钟，最大 1440 分钟（24 小时）。商品较多的站点建议调大到 60~360 分钟。',
+            restartHint: '修改后需重启 worker 进程才会生效。',
+          },
+          preOrderCheck: {
+            title: '下单前库存兜底校验',
+            subtitle: '当本地缓存库存不足时，下单前实时向上游查询一次单品库存，避免出现"付款后无货"。',
+            enabled: '启用下单前实时校验',
+            enabledHint: '关闭后下单将完全依赖本地缓存库存，速度最快但可能出现售罄。上游不可达时本功能会自动放行下单（fail-open）。',
           },
         },
         callbackRoutes: {
@@ -5786,6 +5804,7 @@ const messages = {
           navigation: '導航配置 (Navigation)',
           callbackRoutes: '回調路由 (Callback Routes)',
           orderRiskControl: '訂單風控 (Risk Control)',
+          upstreamSync: '上游同步 (Upstream Sync)',
         },
         homeAnnouncement: {
           title: '首頁公告',
@@ -5836,6 +5855,23 @@ const messages = {
             title: '郵箱黑名單',
             subtitle: '被封禁的郵箱將無法以遊客身份下單。每行填寫一個郵箱地址。',
             placeholder: '每行一個郵箱地址，例如：\nspam@example.com',
+          },
+        },
+        upstreamSync: {
+          title: '上游同步配置',
+          subtitle: '控制上游庫存同步頻率與下單前即時校驗策略，緩解大庫存站點對上游的壓力。',
+          interval: {
+            title: '庫存同步間隔',
+            subtitle: '系統每隔此時間向上游拉取一次庫存（增量同步），24 小時內至少觸發一次全量同步用於發現下架/刪除。',
+            minutesLabel: '同步間隔（分鐘）',
+            minutesHint: '最小 5 分鐘，最大 1440 分鐘（24 小時）。商品較多的站點建議調大到 60~360 分鐘。',
+            restartHint: '修改後需重啟 worker 進程才會生效。',
+          },
+          preOrderCheck: {
+            title: '下單前庫存兜底校驗',
+            subtitle: '當本地快取庫存不足時，下單前即時向上游查詢一次單品庫存，避免出現「付款後無貨」。',
+            enabled: '啟用下單前即時校驗',
+            enabledHint: '關閉後下單將完全依賴本地快取庫存，速度最快但可能出現售罄。上游不可達時本功能會自動放行下單（fail-open）。',
           },
         },
         callbackRoutes: {
@@ -9196,6 +9232,7 @@ const messages = {
           navigation: 'Navigation',
           callbackRoutes: 'Callback Routes',
           orderRiskControl: 'Risk Control',
+          upstreamSync: 'Upstream Sync',
         },
         homeAnnouncement: {
           title: 'Home Announcement',
@@ -9246,6 +9283,23 @@ const messages = {
             title: 'Email Blacklist',
             subtitle: 'Blocked emails will not be able to place guest orders. Enter one email per line.',
             placeholder: 'One email per line, e.g.:\nspam@example.com',
+          },
+        },
+        upstreamSync: {
+          title: 'Upstream Sync Config',
+          subtitle: 'Control how often the system pulls upstream stock and whether to verify stock at order placement. Reduces pressure on upstream sites with large catalogs.',
+          interval: {
+            title: 'Stock Sync Interval',
+            subtitle: 'The system pulls upstream stock (incrementally) every interval, with a full sync forced at least once every 24 hours to detect removed/deleted products.',
+            minutesLabel: 'Sync Interval (minutes)',
+            minutesHint: 'Minimum 5 minutes, maximum 1440 minutes (24 hours). For sites with many products, 60~360 minutes is recommended.',
+            restartHint: 'Requires worker process restart to take effect.',
+          },
+          preOrderCheck: {
+            title: 'Pre-Order Stock Verification',
+            subtitle: 'When local cached stock is low, query upstream in real time during order placement to avoid "paid but out of stock".',
+            enabled: 'Enable Pre-Order Verification',
+            enabledHint: 'When disabled, orders rely solely on cached stock (fastest but may oversell). If upstream is unreachable, this check fails open so orders still go through.',
           },
         },
         callbackRoutes: {

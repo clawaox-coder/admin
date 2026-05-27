@@ -20,6 +20,7 @@ import SettingsCaptchaTab from './components/SettingsCaptchaTab.vue'
 import SettingsOrderEmailTemplateTab from './components/SettingsOrderEmailTemplateTab.vue'
 import SettingsNavigationTab from './components/SettingsNavigationTab.vue'
 import SettingsHomeAnnouncementTab from './components/SettingsHomeAnnouncementTab.vue'
+import SettingsUpstreamSyncTab from './components/SettingsUpstreamSyncTab.vue'
 
 const { t } = useI18n()
 const loading = ref(false)
@@ -28,6 +29,7 @@ const captchaTabRef = ref<InstanceType<typeof SettingsCaptchaTab>>()
 const orderEmailTemplateTabRef = ref<InstanceType<typeof SettingsOrderEmailTemplateTab>>()
 const navigationTabRef = ref<InstanceType<typeof SettingsNavigationTab>>()
 const homeAnnouncementTabRef = ref<InstanceType<typeof SettingsHomeAnnouncementTab>>()
+const upstreamSyncTabRef = ref<InstanceType<typeof SettingsUpstreamSyncTab>>()
 const siteIconPickerRef = ref<InstanceType<typeof MediaPicker> | null>(null)
 const supportedLanguages = ['zh-CN', 'zh-TW', 'en-US'] as const
 type SupportedLanguage = (typeof supportedLanguages)[number]
@@ -76,6 +78,7 @@ const tabs = computed(() => [
   { label: t('admin.settings.tabs.captcha'), value: 'captcha' },
   { label: t('admin.settings.tabs.telegram'), value: 'telegram' },
   { label: t('admin.settings.tabs.dashboard'), value: 'dashboard' },
+  { label: t('admin.settings.tabs.upstreamSync'), value: 'upstream_sync' },
 ])
 
 const fallbackCurrencyOptions = [
@@ -704,6 +707,10 @@ const saveSettings = async () => {
     await homeAnnouncementTabRef.value?.save()
     return
   }
+  if (currentTab.value === 'upstream_sync') {
+    await upstreamSyncTabRef.value?.save()
+    return
+  }
   loading.value = true
   try {
     if (currentTab.value === 'telegram') {
@@ -747,7 +754,7 @@ onMounted(() => {
             {{ lang.name }}
           </button>
         </div>
-        <Button size="sm" class="w-full sm:w-auto" :disabled="loading || smtpTabRef?.submitting || smtpTabRef?.smtpTesting || captchaTabRef?.submitting || orderEmailTemplateTabRef?.submitting || navigationTabRef?.submitting || homeAnnouncementTabRef?.submitting" @click="saveSettings">
+        <Button size="sm" class="w-full sm:w-auto" :disabled="loading || smtpTabRef?.submitting || smtpTabRef?.smtpTesting || captchaTabRef?.submitting || orderEmailTemplateTabRef?.submitting || navigationTabRef?.submitting || homeAnnouncementTabRef?.submitting || upstreamSyncTabRef?.submitting" @click="saveSettings">
           <span v-if="loading" class="h-3 w-3 animate-spin rounded-full border-2 border-primary/30 border-t-primary"></span>
           {{ loading ? t('admin.settings.actions.saving') : t('admin.settings.actions.save') }}
         </Button>
@@ -1269,6 +1276,10 @@ onMounted(() => {
           </div>
         </div>
       </div>
+      </TabsContent>
+
+      <TabsContent value="upstream_sync" :forceMount="true" v-show="currentTab === 'upstream_sync'" class="mt-0">
+        <SettingsUpstreamSyncTab ref="upstreamSyncTabRef" />
       </TabsContent>
 
       <TabsContent value="dashboard" :forceMount="true" v-show="currentTab === 'dashboard'" class="space-y-6 mt-0">
